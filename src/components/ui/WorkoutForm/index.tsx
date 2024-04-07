@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
-import { currentDateAtom } from "../../store";
+import { currentDateAtom } from "../../../store";
+import styles from "./WorkoutForm.module.scss";
 
 export interface IAppProps {}
 
@@ -11,8 +12,10 @@ function WorkoutForm(props: IAppProps) {
       onClick={() => {
         console.log("test");
       }}
+      className={`${styles.container} ${currentDate ? styles.expand : styles.fold}`}
     >
       {currentDate}
+      test 테스트
     </div>
   );
 }

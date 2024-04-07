@@ -1,14 +1,15 @@
 import { Calendar, SlotInfo, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import { useAtom } from "jotai";
-import { currentDateAtom } from "../../store";
+import { currentDateAtom } from "../../../store";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import "../../style/calendar.scss";
+import styles from "./Calendar.module.scss";
 
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
 function CalendarComponent() {
   const [currentDate, setCurrentDate] = useAtom(currentDateAtom);
+  console.log(currentDate);
   function onSelectSlot(slotInfo: SlotInfo) {
     slotInfo.action = "click";
     const year = slotInfo.start.getFullYear();
@@ -18,8 +19,8 @@ function CalendarComponent() {
   }
 
   return (
-    <div className="myCustomHeight">
-      <Calendar views={["month"]} selectable={true} onSelectSlot={onSelectSlot} localizer={localizer} startAccessor="start" endAccessor="end" style={{ height: 500 }} />
+    <div className={`${styles.container} ${currentDate ? styles.fold : styles.expand}`}>
+      <Calendar views={["month"]} selectable={true} onSelectSlot={onSelectSlot} localizer={localizer} startAccessor="start" endAccessor="end" />
     </div>
   );
 }

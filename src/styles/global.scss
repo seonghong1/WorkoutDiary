@@ -1,0 +1,23 @@
+@import "./valiable.scss";
+
+@font-face {
+  font-family: "Gaegu-Regular";
+  src: url(../assets/fonts/Gaegu-Regular.ttf);
+}
+body,
+html,
+#root,
+.App {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Gaegu-Regular";
+  background-color: $color-main;
+}
+
+.App {
+  padding: 30px 20px;
+  box-sizing: border-box;
+}

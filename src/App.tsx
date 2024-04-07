@@ -1,12 +1,9 @@
-import { CalendarComponent, WorkoutForm, SmallCalendarComponent } from "./components/ui/index";
-import "./App.scss";
+import { HomeComponent } from "./components/layouts";
 
 function App() {
   return (
     <div className="App">
-      <CalendarComponent />
-      <WorkoutForm />
-      <SmallCalendarComponent />
+      <HomeComponent />
     </div>
   );
 }
