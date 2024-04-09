@@ -1,3 +1,3 @@
 import { atom } from "jotai";
 
-export const currentDateAtom = atom("");
+export const workoutListAtom = atom(null as null | any[]);

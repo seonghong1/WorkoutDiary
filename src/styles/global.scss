@@ -21,3 +21,33 @@ body {
   padding: 30px 20px;
   box-sizing: border-box;
 }
+
+.rbc-calendar {
+  .rbc-day-bg,
+  .rbc-month-row {
+    cursor: pointer;
+  }
+}
+
+.rbc-date-cell {
+  transform: translate(-3px, 3px);
+  margin-bottom: 5px;
+}
+.rbc-current {
+  > button {
+    padding: 3px;
+    background-color: $color-main;
+    color: $color-white;
+    border-radius: 50%;
+  }
+}
+.rbc-event {
+  border-radius: 8px !important;
+  width: 95% !important;
+  transform: translateX(2.5%);
+}
+.rbc-today {
+  background-color: transparent !important;
+  border: 1px solid $color-main !important;
+  box-sizing: border-box;
+}

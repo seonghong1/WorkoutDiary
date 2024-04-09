@@ -1,16 +1,16 @@
 import { CalendarComponent, WorkoutForm } from "components/ui";
 import styles from "./Contents.module.scss";
-import { currentDateAtom } from "store";
+import { workoutListAtom } from "store";
 
 import { useAtom } from "jotai";
 
 export function ContentComponent() {
-  const [currentDate] = useAtom(currentDateAtom);
+  const [workoutList] = useAtom(workoutListAtom);
 
   return (
     <div className={styles.container}>
       <CalendarComponent />
-      {currentDate && <WorkoutForm />}
+      {workoutList && <WorkoutForm />}
     </div>
   );
 }
