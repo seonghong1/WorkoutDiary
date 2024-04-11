@@ -5,6 +5,8 @@ import { workoutListAtom } from "store";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import styles from "./Calendar.module.scss";
 import { UtilService } from "services/util-service";
+import { DUMMY_DATA } from "constants/inputs";
+import { IEvent } from "types";
 
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -16,6 +18,10 @@ function CalendarComponent() {
   function onSelectEvent(event: any) {
     setWorkoutList([event]);
     console.log(event);
+  }
+
+  function getEvents(): IEvent[] {
+    return DUMMY_DATA["2024_4"];
   }
 
   /* 캘린더에 나타날 이벤트 목록 */
@@ -60,21 +66,17 @@ function CalendarComponent() {
 
   /* 날짜 이동, 월 이동시 호출되는 항목 */
   function onNavigate(newDate: Date, view: View, action: NavigateAction) {
-    // action 인자로 어떤 타입의 navigate action이 일어났는지 확인 가능
-    // events.push({
-    //   title: "test222",
-    //   start: new Date("2024-05-09"),
-    //   end: new Date("2024-05-09"),
-    //   resource: ["test"],
-    // });
-    const filterdEvents = events.filter((event: Event) => {
+    const date = `${newDate.getFullYear()}_${newDate.getMonth() + 1}`;
+    const data = DUMMY_DATA[date];
+    if (!data) return;
+    const filterdData = data.filter((event: IEvent) => {
       if (event.start?.toDateString() === UtilService.getConvertedDate(newDate).toDateString()) {
         return event;
       }
     });
-    console.log(filterdEvents);
+    console.log(filterdData);
 
-    setWorkoutList(filterdEvents);
+    setWorkoutList(filterdData);
   }
 
   /* 이벤트 요소들이 마운트, 업데이트 될 때 호출되는 함수 */
@@ -96,7 +98,7 @@ function CalendarComponent() {
   return (
     <div className={`${styles.container} ${workoutList ? styles.fold : styles.expand}`}>
       <Calendar
-        events={events}
+        events={getEvents()}
         selectable={true}
         localizer={localizer}
         views={["month"]}

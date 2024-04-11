@@ -1,6 +1,8 @@
 import { useAtom } from "jotai";
 import { workoutListAtom } from "store";
 import styles from "./WorkoutForm.module.scss";
+import WorkoutInputBox from "../WorkoutInputBox";
+import { IEvent } from "types";
 
 export interface IAppProps {}
 
@@ -14,8 +16,9 @@ function WorkoutForm(props: IAppProps) {
       }}
       className={`${styles.container} ${workoutList ? styles.expand : styles.fold}`}
     >
-      {/* {workoutList} */}
-      test 테스트
+      {workoutList?.map((item: IEvent, i: number) => {
+        return <WorkoutInputBox key={`${item.title}_${i}`} data={item} />;
+      })}
     </div>
   );
 }
