@@ -1,4 +1,11 @@
-TODO :: 값 변경시 데이터 변경과 흐름 구성하기
+4/12 - TODO :: 종목별 options 구축하기
+4/12 - TODO :: options Data 구축 후 category input text->select-box로 변경하기
+
+TODO :: options Data 가나다순 정렬, 맞춤법 및 띄어쓰기 점검
+TODO :: 테스트시 변경한 타입 정리하기 (any, 주석된 타입)
+TODO :: 변수, 함수 네이밍 재정의하기
+
+npm i react-detect-click-outside workoutForm외부 클릭시 workoutList 초기화
 
 #### 컴포넌트 정의
 

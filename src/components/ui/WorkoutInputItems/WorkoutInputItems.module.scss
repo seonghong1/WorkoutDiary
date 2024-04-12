@@ -1,3 +1,29 @@
 @import "styles/valiable.scss";
 .container {
+  display: flex;
+  gap: 10px;
+
+  select.category {
+    width: 40%;
+  }
+
+  .subContainer {
+    width: 60%;
+    display: flex;
+    gap: 2px;
+    input.weight {
+      position: relative;
+      width: calc(100% / 3);
+    }
+    input.repetition {
+      width: calc(100% / 3);
+    }
+    input.sets {
+      width: calc(100% / 3);
+    }
+
+    span {
+      position: absolute;
+    }
+  }
 }

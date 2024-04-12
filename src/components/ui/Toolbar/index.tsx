@@ -9,9 +9,7 @@ function WorkoutForm(props: IAppProps) {
 
   return (
     <div
-      onClick={() => {
-        console.log("test");
-      }}
+      onClick={() => {}}
       className={`${styles.container} ${currentDate ? styles.expand : styles.fold}`}
     >
       {currentDate}

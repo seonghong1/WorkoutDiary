@@ -17,7 +17,6 @@ function CalendarComponent() {
   /* 이벤트를 클릭했을 때  */
   function onSelectEvent(event: any) {
     setWorkoutList([event]);
-    console.log(event);
   }
 
   function getEvents(): IEvent[] {
@@ -74,7 +73,6 @@ function CalendarComponent() {
         return event;
       }
     });
-    console.log(filterdData);
 
     setWorkoutList(filterdData);
   }

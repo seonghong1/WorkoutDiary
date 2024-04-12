@@ -1,3 +1,15 @@
 @import "styles/valiable.scss";
 .container {
+  position: relative;
+  .resourceHeader {
+    width: 60%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    > li {
+      text-align: center;
+      width: calc(100% / 3);
+    }
+  }
 }

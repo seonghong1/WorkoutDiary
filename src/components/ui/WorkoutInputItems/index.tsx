@@ -1,16 +1,70 @@
-import { IWorkoutData } from "types";
+import { IEventResource } from "types";
 import styles from "./WorkoutInputItems.module.scss";
+import { ChangeEvent, useState } from "react";
+import { OPTIONS_DATA } from "constants/inputs";
 
 export interface IAppProps {}
 
-function WorkoutInputItems({ data, ind }: { data: IWorkoutData; ind: any }) {
-  console.log("WorkoutInputItems : ", data, ind);
+function WorkoutInputItems({
+  data,
+  eventIndex,
+  resourceIndex,
+  changeEvent,
+}: {
+  data: IEventResource;
+  eventIndex: number;
+  resourceIndex: number;
+  changeEvent: (
+    eventIndex: number,
+    resourceIndex: number,
+    data: { key: string; value: string | number }
+  ) => void;
+}) {
   return (
-    <div className="container">
-      <input type="text" className="" value={data.category} />
-      <input type="number" className="" value={data.weight} />
-      <input type="number" className="" value={data.repetition} />
-      <input type="number" className="" value={data.sets} />
+    <div className={styles.container}>
+      <select
+        className={styles.category}
+        value={data.category}
+        name=""
+        id=""
+        onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+          changeEvent(eventIndex, resourceIndex, { key: "category", value: e.target.value })
+        }
+      >
+        {OPTIONS_DATA[data.title].map((option: any) => {
+          return (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          );
+        })}
+      </select>
+      <div className={styles.subContainer}>
+        <input
+          type="number"
+          className={styles.weight}
+          value={data.weight}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            changeEvent(eventIndex, resourceIndex, { key: "weight", value: e.target.value })
+          }
+        />
+        <input
+          type="number"
+          className={styles.repetition}
+          value={data.repetition}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            changeEvent(eventIndex, resourceIndex, { key: "repetition", value: e.target.value })
+          }
+        />
+        <input
+          type="number"
+          className={styles.sets}
+          value={data.sets}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            changeEvent(eventIndex, resourceIndex, { key: "sets", value: e.target.value })
+          }
+        />
+      </div>
     </div>
   );
 }
