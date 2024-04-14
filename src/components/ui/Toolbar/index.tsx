@@ -1,21 +1,38 @@
-import { useAtom } from "jotai";
-import { currentDateAtom } from "../../../store";
-import styles from "./WorkoutForm.module.scss";
+import styles from "./Toolbar.module.scss";
+import { ToolbarProps } from "react-big-calendar";
 
-export interface IAppProps {}
-
-function WorkoutForm(props: IAppProps) {
-  const [currentDate] = useAtom(currentDateAtom);
+function Toolbar(props: ToolbarProps) {
+  const year = props.date.getFullYear();
+  const month = (props.date.getMonth() + 1).toString();
 
   return (
-    <div
-      onClick={() => {}}
-      className={`${styles.container} ${currentDate ? styles.expand : styles.fold}`}
-    >
-      {currentDate}
-      test 테스트
+    <div className={styles.container}>
+      <div className={styles.date}>{`${year} ${month.length === 1 ? `0${month}` : month}`}</div>
+      <ul className={styles.calendarNavigation}>
+        <li
+          onClick={() => {
+            props.onNavigate("PREV");
+          }}
+        >
+          PREV
+        </li>
+        <li
+          onClick={() => {
+            props.onNavigate("TODAY");
+          }}
+        >
+          today
+        </li>
+        <li
+          onClick={() => {
+            props.onNavigate("NEXT");
+          }}
+        >
+          NEXT
+        </li>
+      </ul>
     </div>
   );
 }
 
-export default WorkoutForm;
+export default Toolbar;

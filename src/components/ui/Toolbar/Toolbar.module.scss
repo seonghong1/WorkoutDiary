@@ -1,0 +1,43 @@
+@import "styles/valiable.scss";
+@import "styles/mixin.scss";
+
+.container {
+  position: relative;
+  background-color: $color-white;
+  border-radius: 20px;
+  &.expand {
+    width: 35%;
+    height: 100%;
+  }
+  &.fold {
+    width: 0%;
+    height: 0%;
+  }
+
+  .date {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    @include font-h1;
+  }
+
+  .calendarNavigation {
+    display: flex;
+    justify-content: space-between;
+
+    > li {
+      cursor: pointer;
+      color: white;
+      margin-top: 45px;
+      margin-bottom: 5px;
+      background-color: rgba($color: $color-main, $alpha: 0.3);
+      padding: 5px 10px;
+      border-radius: 10px;
+
+      &:hover {
+        background-color: rgba($color: $color-main, $alpha: 1);
+      }
+    }
+  }
+}
