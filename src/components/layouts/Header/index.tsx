@@ -1,6 +1,5 @@
-import styles from "./Header.module.scss";
-
 import { UtilService } from "services/util-service";
+import styles from "./Header.module.scss";
 
 export function HeaderComponent() {
   return (

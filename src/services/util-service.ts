@@ -1,3 +1,6 @@
+import { THEME_COLOR } from "constants/inputs";
+import { TCategory } from "types";
+
 export class UtilService {
   static getToday() {
     const date: Date = new Date();
@@ -15,5 +18,22 @@ export class UtilService {
     const day = date.getDate();
 
     return new Date(`${year}-${month + 1}-${day}`);
+  }
+
+  static getColorStyle(title: TCategory) {
+    switch (title) {
+      case "등":
+        return THEME_COLOR[title];
+      case "가슴":
+        return THEME_COLOR[title];
+      case "하체":
+        return THEME_COLOR[title];
+      case "어깨":
+        return THEME_COLOR[title];
+      case "이두":
+        return THEME_COLOR[title];
+      case "삼두":
+        return THEME_COLOR[title];
+    }
   }
 }

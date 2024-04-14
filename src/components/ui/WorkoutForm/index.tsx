@@ -1,13 +1,15 @@
-import { useAtom } from "jotai";
-import { workoutListAtom } from "store";
-import styles from "./WorkoutForm.module.scss";
-import WorkoutInputBox from "../WorkoutInputBox";
-import { IEvent, TEventResource } from "types";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { useAtom } from "jotai";
 
-export interface IAppProps {}
+import { workoutListAtom } from "store";
 
-function WorkoutForm(props: IAppProps) {
+import WorkoutInputBox from "../WorkoutInputBox";
+
+import styles from "./WorkoutForm.module.scss";
+
+import { IEvent, TEventResource } from "types";
+
+function WorkoutForm() {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
   const ref = useDetectClickOutside({
     onTriggered: (e: any) => {
@@ -19,11 +21,10 @@ function WorkoutForm(props: IAppProps) {
     },
   });
 
-  // TODO :: any타입 정리하기
-  function changeEvent(
+  function changeInputValue(
     eventIndex: number,
     resourceIndex: number,
-    data: { key: TEventResource; value: any }
+    data: { key: TEventResource; value: number | string }
   ) {
     const arr: IEvent[] = JSON.parse(JSON.stringify(workoutList));
     arr[eventIndex].resource[resourceIndex][data.key] = data.value;
@@ -38,7 +39,7 @@ function WorkoutForm(props: IAppProps) {
             key={`${item.title}`}
             data={item}
             eventIndex={i}
-            changeEvent={changeEvent}
+            changeInputValue={changeInputValue}
           />
         );
       })}

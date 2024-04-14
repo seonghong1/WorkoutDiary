@@ -1,34 +1,45 @@
-import { IEvent, IEventResource } from "types";
-import styles from "./WorkoutInputBox.module.scss";
+import { UtilService } from "services/util-service";
 import WorkoutInputItems from "../WorkoutInputItems";
+import styles from "./WorkoutInputBox.module.scss";
+import { IEvent, IEventResource, TEventResource } from "types";
 
 export interface IAppProps {}
 
 function WorkoutInputBox({
   data,
   eventIndex,
-  changeEvent,
+  changeInputValue,
 }: {
   data: IEvent;
   eventIndex: number;
-  changeEvent: any;
+  changeInputValue: (
+    eventIndex: number,
+    resourceIndex: number,
+    data: { key: TEventResource; value: string | number }
+  ) => void;
 }) {
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>{data.title}</div>
-      <ul className={styles.resourceHeader}>
-        <li>무게</li>
-        <li>횟수</li>
-        <li>세트수</li>
-      </ul>
-      {data.resource.map((item: IEventResource, i: any) => {
+    <div
+      className={styles.container}
+      style={{ backgroundColor: UtilService.getColorStyle(data.title) }}
+    >
+      <div className={styles.titleContainer}>
+        <div className={styles.title}>{data.title}</div>
+        <ul className={styles.resourceHeader}>
+          <li>무게</li>
+          <li>횟수</li>
+          <li>세트수</li>
+        </ul>
+      </div>
+
+      {data.resource.map((item: IEventResource, i: number) => {
         return (
           <WorkoutInputItems
             key={item.category}
             data={item}
             eventIndex={eventIndex}
             resourceIndex={i}
-            changeEvent={changeEvent}
+            changeInputValue={changeInputValue}
           />
         );
       })}

@@ -1,7 +1,10 @@
 @import "styles/valiable.scss";
+@import "styles/mixin.scss";
+
 .container {
   display: flex;
   gap: 10px;
+  margin-bottom: 10px;
 
   select.category {
     width: 40%;
@@ -10,20 +13,44 @@
   .subContainer {
     width: 60%;
     display: flex;
-    gap: 2px;
-    input.weight {
+    gap: 10px;
+    .inputContainer {
+      width: calc(100% / 3);
       position: relative;
-      width: calc(100% / 3);
-    }
-    input.repetition {
-      width: calc(100% / 3);
-    }
-    input.sets {
-      width: calc(100% / 3);
+
+      input {
+        width: 100%;
+      }
     }
 
     span {
+      @include font-gray-regular;
       position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
     }
   }
+}
+
+/* number type 기본 속성 제거 */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox  */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+select,
+input {
+  outline-width: 1px;
+  border: none;
+  outline-color: $color-main;
+  border-radius: 10px;
+  padding: 10px 8px;
+  box-sizing: border-box;
 }

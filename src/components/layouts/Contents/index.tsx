@@ -1,8 +1,7 @@
-import { CalendarComponent, WorkoutForm } from "components/ui";
-import styles from "./Contents.module.scss";
-import { workoutListAtom } from "store";
-
 import { useAtom } from "jotai";
+import { workoutListAtom } from "store";
+import styles from "./Contents.module.scss";
+import { CalendarComponent, WorkoutForm } from "components/ui";
 
 export function ContentComponent() {
   const [workoutList] = useAtom(workoutListAtom);

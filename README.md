@@ -1,9 +1,13 @@
+TODO :: inputBox 요소 추가, 삭제 구현 필요
+TODO :: inputItems 요소 추가, 삭제 구현 필요
+
 4/12 - TODO :: 종목별 options 구축하기
 4/12 - TODO :: options Data 구축 후 category input text->select-box로 변경하기
 
-TODO :: options Data 가나다순 정렬, 맞춤법 및 띄어쓰기 점검
-TODO :: 테스트시 변경한 타입 정리하기 (any, 주석된 타입)
-TODO :: 변수, 함수 네이밍 재정의하기
+4/14 - TODO :: options Data 가나다순 정렬, 맞춤법 및 띄어쓰기 점검
+4/14 - TODO :: 테스트시 변경한 타입 정리하기 (any, 주석된 타입)
+4/14 - TODO :: 변수, 함수 네이밍 재정의하기
+4/14 - TODO :: import 순서 컨벤션 정의 및 수정하기
 
 npm i react-detect-click-outside workoutForm외부 클릭시 workoutList 초기화
 
@@ -21,3 +25,14 @@ npm i react-detect-click-outside workoutForm외부 클릭시 workoutList 초기�
 
 - class명이 두음절 이상인 경우 camelCase로 작성한다.
 - module.scss를 참조할땐 "styles"로 지정한다.
+
+#### import 순서
+
+- react hook
+- library
+- util, api service
+- store
+- component
+- style
+- type
+- constants

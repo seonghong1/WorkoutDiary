@@ -1,15 +1,30 @@
 @import "styles/valiable.scss";
+@import "styles/mixin.scss";
+
 .container {
-  position: relative;
-  .resourceHeader {
-    width: 60%;
-    position: absolute;
-    right: 0;
-    top: 0;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+
+  .titleContainer {
     display: flex;
-    > li {
-      text-align: center;
-      width: calc(100% / 3);
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 8px;
+    color: $color-white !important;
+
+    .title {
+      @include font-h1;
+    }
+
+    .resourceHeader {
+      width: 60%;
+      display: flex;
+
+      > li {
+        text-align: center;
+        width: calc(100% / 3);
+      }
     }
   }
 }

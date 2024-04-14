@@ -1,0 +1,23 @@
+@mixin font-gray-regular {
+  color: $color-gray;
+}
+
+@mixin font-h1 {
+  font-family: "Gaegu-Bold";
+
+  font-size: 40px;
+}
+
+@mixin font-black-h2 {
+  font-family: "Gaegu-Bold";
+
+  font-size: 30px;
+  color: $color-black;
+}
+
+@mixin font-black-h3 {
+  font-family: "Gaegu-Bold";
+
+  font-size: 20px;
+  color: $color-black;
+}
