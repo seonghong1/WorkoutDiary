@@ -1,4 +1,3 @@
-import { currentDateAtom } from "./calendar-store";
-import { workoutListAtom } from "./workout-store";
+import { workoutListAtom, eventListAtom } from "./workout-store";
 
-export { currentDateAtom, workoutListAtom };
+export { workoutListAtom, eventListAtom };

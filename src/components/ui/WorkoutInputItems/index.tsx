@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 import styles from "./WorkoutInputItems.module.scss";
 import { IEventResource, TEventResource } from "types";
-import { OPTIONS_DATA } from "constants/inputs";
+import { CATEGORY_OPTIONS_DATA } from "constants/inputs";
 
 export interface IAppProps {}
 
@@ -11,6 +11,7 @@ function WorkoutInputItems({
   eventIndex,
   resourceIndex,
   changeInputValue,
+  removeWorkoutInputItems,
 }: {
   data: IEventResource;
   eventIndex: number;
@@ -20,6 +21,7 @@ function WorkoutInputItems({
     resourceIndex: number,
     data: { key: TEventResource; value: string | number }
   ) => void;
+  removeWorkoutInputItems: (eventIndex: number, resourceIndex: number) => void;
 }) {
   return (
     <div className={styles.container}>
@@ -32,7 +34,7 @@ function WorkoutInputItems({
           changeInputValue(eventIndex, resourceIndex, { key: "category", value: e.target.value })
         }
       >
-        {OPTIONS_DATA[data.title].map((option: string) => {
+        {CATEGORY_OPTIONS_DATA[data.title].map((option: string) => {
           return (
             <option key={option} value={option}>
               {option}
@@ -77,6 +79,13 @@ function WorkoutInputItems({
           />
           <span>sets</span>
         </div>
+        <button
+          onClick={() => {
+            removeWorkoutInputItems(eventIndex, resourceIndex);
+          }}
+        >
+          remove
+        </button>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export interface IEventResource {
 */
 export interface IEvent extends Event {
   title: TCategory;
-  resource: IEventResource[];
+  resource: IEventResource[] | any;
 }
 
 /*

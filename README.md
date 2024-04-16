@@ -1,5 +1,14 @@
-TODO :: inputBox 요소 추가, 삭제 구현 필요
-TODO :: inputItems 요소 추가, 삭제 구현 필요
+TOTO :: CRUD및 일부 아이콘 추가 필요(react-icons)
+TODO :: scrollBar style 적용 필요
+TODO :: 타입 재정의 필요 (일부 작업하면서 임시로 타입을 any 변경)
+TODO :: crud 코드 최적화 및 개선점 파악
+TODO :: 임시로 추가한 버튼들 스타일 적용 필요
+TODO :: 날짜 관련 변수 및 코드 재확인 필요(중복 및 재사용 가능한 코드 확인)
+
+4/16 - TODO :: inputBox 요소 추가, 삭제 구현 필요
+4/16 - TODO :: inputItems 요소 추가, 삭제 구현 필요
+4/16 - TODO :: WorkoutForm영역 정보 추가 노출 필요 (날짜, 종목..)
+4/16 - TODO :: 더미데이터 => 로컬스토리지로 데이터 저장 방식 및 crud코드 수정
 
 4/12 - TODO :: 종목별 options 구축하기
 4/12 - TODO :: options Data 구축 후 category input text->select-box로 변경하기

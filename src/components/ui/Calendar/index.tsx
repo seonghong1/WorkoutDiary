@@ -1,8 +1,9 @@
-import { Calendar, Event, NavigateAction, View, momentLocalizer } from "react-big-calendar";
+import { useState, useEffect } from "react";
+import { Calendar, NavigateAction, View, momentLocalizer } from "react-big-calendar";
 import { useAtom } from "jotai";
 import moment from "moment";
 
-import { workoutListAtom } from "store";
+import { eventListAtom, workoutListAtom } from "store";
 import { UtilService } from "services/util-service";
 
 import styles from "./Calendar.module.scss";
@@ -12,35 +13,64 @@ import Toolbar from "../Toolbar";
 
 import { IEvent } from "types";
 
-import { DUMMY_DATA } from "constants/inputs";
-
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
-
-function CalendarComponent() {
+function CalendarComponent({
+  currentDate,
+  setCurrentDate,
+}: {
+  currentDate: null | Date;
+  setCurrentDate: (currentDate: Date) => void;
+}) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
+  const [eventList, setEventList] = useAtom(eventListAtom);
+
+  useEffect(() => {
+    const date = new Date("2024-04-16");
+    setCurrentDate(date);
+
+    const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
+    if (localstorage) {
+      setEventList(localstorage[`${date!.getFullYear()}_${date!.getMonth() + 1}`]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentDate && workoutList) {
+      const key = `${currentDate!.getFullYear()}_${currentDate!.getMonth() + 1}`;
+      const data = { [key]: eventList };
+
+      const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
+
+      localStorage.setItem("WorkoutDiary", JSON.stringify({ ...localstorage, ...data }));
+    }
+  }, [eventList]);
 
   /* 이벤트를 클릭했을 때  */
   function onSelectEvent(event: IEvent) {
     setWorkoutList([event]);
   }
 
-  function getEvents(): IEvent[] {
-    return DUMMY_DATA["2024_4"];
-  }
-
   /* 날짜 이동, 월 이동시 호출되는 항목 */
   function onNavigate(newDate: Date, view: View, action: NavigateAction) {
-    const date = `${newDate.getFullYear()}_${newDate.getMonth() + 1}`;
-    const data = DUMMY_DATA[date];
-    if (!data) return;
-    const filterdData = data.filter((event: IEvent) => {
-      if (event.start?.toDateString() === UtilService.getConvertedDate(newDate).toDateString()) {
-        return event;
+    setCurrentDate(newDate);
+
+    const filterdData = eventList?.filter((event: IEvent) => {
+      if (event) {
+        if (new Date(event.start!)?.toDateString() === newDate.toDateString()) {
+          return event;
+        }
       }
     });
 
-    setWorkoutList(filterdData);
+    if (action !== "DATE") {
+      if (eventList) {
+        const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
+        setEventList(localstorage[`${currentDate!.getFullYear()}_${currentDate!.getMonth() + 1}`]);
+      }
+    } else {
+      setWorkoutList(filterdData || []);
+    }
   }
 
   /* 이벤트 요소들이 마운트, 업데이트 될 때 호출되는 함수 */
@@ -57,7 +87,7 @@ function CalendarComponent() {
   return (
     <div className={`${styles.container} ${workoutList ? styles.fold : styles.expand}`}>
       <Calendar
-        events={getEvents()}
+        events={eventList}
         selectable={true}
         localizer={localizer}
         views={["month"]}

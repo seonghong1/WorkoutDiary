@@ -9,8 +9,10 @@ export const THEME_COLOR = {
   삼두: "#bb5b5b",
 };
 
+export const TITLE_LIST = ["등", "가슴", "하체", "어깨", "이두", "삼두"];
+
 /* category select-box에 사용되는 options 요소 */
-export const OPTIONS_DATA: { [key: string]: string[] } = {
+export const CATEGORY_OPTIONS_DATA: { [key: string]: string[] } = {
   등: [
     "뉴트럴 그립 로우 머신",
     "와이드 그립 렛풀다운",
@@ -61,7 +63,7 @@ export const OPTIONS_DATA: { [key: string]: string[] } = {
   ],
 };
 
-export const DUMMY_DATA: ISavedEvent = {
+export const DUMMY_DATA: any = {
   "2024_5": [
     {
       title: "가슴",

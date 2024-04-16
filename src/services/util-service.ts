@@ -14,10 +14,19 @@ export class UtilService {
 
   static getConvertedDate(date: Date) {
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const day = date.getDate();
 
-    return new Date(`${year}-${month + 1}-${day}`);
+    return new Date(`${year}-${month}-${day}`);
+  }
+
+  static getConvertedWorkoutFormDate(date: Date) {
+    const _month = date.getMonth() + 1;
+    const _date = date.getDate();
+    const _day = date.getDay();
+    const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
+
+    return `${_month}월${_date}일(${dayArray[_day]})`;
   }
 
   static getColorStyle(title: TCategory) {

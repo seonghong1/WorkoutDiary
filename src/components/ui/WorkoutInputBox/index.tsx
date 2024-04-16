@@ -9,6 +9,9 @@ function WorkoutInputBox({
   data,
   eventIndex,
   changeInputValue,
+  removeWorkoutBox,
+  removeWorkoutInputItems,
+  addWorkoutInputItems,
 }: {
   data: IEvent;
   eventIndex: number;
@@ -17,6 +20,9 @@ function WorkoutInputBox({
     resourceIndex: number,
     data: { key: TEventResource; value: string | number }
   ) => void;
+  removeWorkoutBox: (eventIndex: number) => void;
+  removeWorkoutInputItems: (eventIndex: number, resourceIndex: number) => void;
+  addWorkoutInputItems: (eventIndex: number) => void;
 }) {
   return (
     <div
@@ -30,19 +36,35 @@ function WorkoutInputBox({
           <li>횟수</li>
           <li>세트수</li>
         </ul>
+        <button
+          onClick={() => {
+            removeWorkoutBox(eventIndex);
+          }}
+        >
+          remove
+        </button>
       </div>
 
-      {data.resource.map((item: IEventResource, i: number) => {
+      {data.resource?.map((item: IEventResource, i: number) => {
         return (
           <WorkoutInputItems
-            key={item.category}
+            key={`${item.category}_${i}`}
             data={item}
             eventIndex={eventIndex}
             resourceIndex={i}
             changeInputValue={changeInputValue}
+            removeWorkoutInputItems={removeWorkoutInputItems}
           />
         );
       })}
+      <button
+        className=""
+        onClick={() => {
+          addWorkoutInputItems(eventIndex);
+        }}
+      >
+        add inputItems
+      </button>
     </div>
   );
 }
