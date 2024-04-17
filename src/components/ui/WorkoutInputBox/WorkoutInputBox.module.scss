@@ -2,29 +2,50 @@
 @import "styles/mixin.scss";
 
 .container {
+  position: relative;
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 10px;
 
   .titleContainer {
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 8px;
     color: $color-white !important;
 
     .title {
       @include font-h1;
+      width: 40%;
     }
 
     .resourceHeader {
-      width: 60%;
+      width: 53%;
       display: flex;
+      gap: 10px;
 
       > li {
         text-align: center;
         width: calc(100% / 3);
       }
+    }
+  }
+  .removeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    font-size: 30px;
+    padding: 0;
+    > svg {
+      display: block;
+    }
+  }
+  .addButton {
+    color: white;
+    font-size: 30px;
+    padding: 0;
+    > svg {
+      display: block;
     }
   }
 }

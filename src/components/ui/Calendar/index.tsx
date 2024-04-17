@@ -26,7 +26,7 @@ function CalendarComponent({
   const [eventList, setEventList] = useAtom(eventListAtom);
 
   useEffect(() => {
-    const date = new Date("2024-04-16");
+    const date = new Date();
     setCurrentDate(date);
 
     const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");

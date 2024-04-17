@@ -2,6 +2,8 @@ import { UtilService } from "services/util-service";
 import WorkoutInputItems from "../WorkoutInputItems";
 import styles from "./WorkoutInputBox.module.scss";
 import { IEvent, IEventResource, TEventResource } from "types";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export interface IAppProps {}
 
@@ -37,14 +39,14 @@ function WorkoutInputBox({
           <li>세트수</li>
         </ul>
         <button
+          className={styles.removeButton}
           onClick={() => {
             removeWorkoutBox(eventIndex);
           }}
         >
-          remove
+          <IoIosCloseCircleOutline />
         </button>
       </div>
-
       {data.resource?.map((item: IEventResource, i: number) => {
         return (
           <WorkoutInputItems
@@ -58,12 +60,12 @@ function WorkoutInputBox({
         );
       })}
       <button
-        className=""
+        className={styles.addButton}
         onClick={() => {
           addWorkoutInputItems(eventIndex);
         }}
       >
-        add inputItems
+        <IoIosAddCircleOutline />
       </button>
     </div>
   );

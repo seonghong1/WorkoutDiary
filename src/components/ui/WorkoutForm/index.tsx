@@ -1,4 +1,7 @@
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { IoAddCircle, IoToday } from "react-icons/io5";
+import { HiMiniMinusCircle } from "react-icons/hi2";
+
 import { useAtom } from "jotai";
 
 import { eventListAtom, workoutListAtom } from "store";
@@ -85,40 +88,49 @@ function WorkoutForm({ currentDate }: { currentDate: Date }) {
     });
     setEventList([...filteredArr, ...workoutList]);
   }
-
+  function changeModalState(state: "addModal") {
+    const changedModalState = { [state]: !modalState[state] };
+    setModalState({ ...modalState, ...changedModalState });
+  }
   return (
     <div ref={ref} className={`${styles.container} ${workoutList ? styles.expand : styles.fold}`}>
-      <div className="">
-        <span>{UtilService.getConvertedWorkoutFormDate(currentDate)}</span>
+      <div className={styles.headerContent}>
+        <IoToday className={styles.dateIcon} />
+        <span className={styles.date}>{UtilService.getConvertedWorkoutFormDate(currentDate)}</span>
         <button
+          className={styles.addButton}
           onClick={() => {
-            const addModalState = { addModal: true };
-            setModalState({ ...modalState, ...addModalState });
+            changeModalState("addModal");
           }}
         >
-          add
+          {modalState.addModal ? <HiMiniMinusCircle /> : <IoAddCircle />}
         </button>
-        {modalState.addModal && <AddModal currentDate={currentDate} />}
+        {modalState.addModal && (
+          <AddModal currentDate={currentDate} changeModalState={changeModalState} />
+        )}
       </div>
-      {workoutList?.map((item: IEvent, i: number) => {
-        return (
-          <WorkoutInputBox
-            key={`${item.title}`}
-            data={item}
-            eventIndex={i}
-            changeInputValue={changeInputValue}
-            removeWorkoutBox={removeWorkoutBox}
-            removeWorkoutInputItems={removeWorkoutInputItems}
-            addWorkoutInputItems={addWorkoutInputItems}
-          />
-        );
-      })}
+      <div className={styles.boxContainer}>
+        {workoutList?.map((item: IEvent, i: number) => {
+          return (
+            <WorkoutInputBox
+              key={`${item.title}`}
+              data={item}
+              eventIndex={i}
+              changeInputValue={changeInputValue}
+              removeWorkoutBox={removeWorkoutBox}
+              removeWorkoutInputItems={removeWorkoutInputItems}
+              addWorkoutInputItems={addWorkoutInputItems}
+            />
+          );
+        })}
+      </div>
       <button
+        className={styles.saveButton}
         onClick={() => {
           saveWorkoutForm();
         }}
       >
-        save workout form
+        저장
       </button>
     </div>
   );

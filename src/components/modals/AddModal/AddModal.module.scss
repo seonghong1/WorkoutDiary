@@ -1,0 +1,34 @@
+@import "styles/valiable.scss";
+
+.container {
+  position: absolute;
+  background-color: $color-main;
+  right: 5px;
+  top: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 20px;
+  gap: 10px;
+  border-radius: 20px;
+  z-index: 1;
+
+  select {
+    outline: none;
+    padding: 10px 15px;
+  }
+
+  button {
+    border-radius: 10px;
+    color: white;
+    font-size: 30px;
+    padding: 3px;
+
+    &:hover {
+      color: $color-main;
+      background-color: white;
+    }
+    > * {
+      display: block;
+    }
+  }
+}

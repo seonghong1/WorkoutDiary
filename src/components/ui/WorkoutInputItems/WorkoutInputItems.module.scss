@@ -31,6 +31,15 @@
       transform: translateY(-50%);
     }
   }
+
+  .removeButton {
+    color: white;
+    font-size: 30px;
+    padding: 0;
+    > svg {
+      display: block;
+    }
+  }
 }
 
 /* number type 기본 속성 제거 */

@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 import styles from "./WorkoutInputItems.module.scss";
 import { IEventResource, TEventResource } from "types";
@@ -80,11 +81,12 @@ function WorkoutInputItems({
           <span>sets</span>
         </div>
         <button
+          className={styles.removeButton}
           onClick={() => {
             removeWorkoutInputItems(eventIndex, resourceIndex);
           }}
         >
-          remove
+          <IoIosRemoveCircleOutline />
         </button>
       </div>
     </div>

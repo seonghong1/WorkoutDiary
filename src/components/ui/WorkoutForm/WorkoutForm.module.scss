@@ -1,9 +1,8 @@
 @import "styles/valiable.scss";
 .container {
-  overflow-y: scroll;
+  position: relative;
   background-color: $color-white;
   border-radius: 20px;
-  padding: 15px 10px;
   box-sizing: border-box;
 
   &.expand {
@@ -13,5 +12,61 @@
   &.fold {
     width: 0%;
     height: 0%;
+  }
+
+  .headerContent {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 15px 10px;
+
+    .date,
+    .dateIcon {
+      font-size: 25px;
+    }
+  }
+
+  .boxContainer {
+    padding: 10px 10px 0 10px;
+    height: calc(100% - 130px);
+    overflow-y: AUTO;
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-light-gray;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: rgba($color: $color-light-gray, $alpha: 0.3);
+    }
+  }
+}
+button {
+  &.addButton {
+    position: absolute;
+    right: 5px;
+    top: 7px;
+    color: $color-main;
+    font-size: 40px !important;
+  }
+  &.saveButton {
+    font-family: "Gaegu-Bold";
+    font-size: 25px !important;
+    color: white;
+    background-color: rgba($color: $color-main, $alpha: 0.5);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    padding: 10px 0;
+    border-radius: 15px;
+
+    &:hover {
+      background-color: rgba($color: $color-main, $alpha: 1);
+    }
   }
 }
