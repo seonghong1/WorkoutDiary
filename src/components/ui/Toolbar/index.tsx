@@ -7,7 +7,7 @@ function Toolbar(props: ToolbarProps) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.date}>{`${year} ${month.length === 1 ? `0${month}` : month}`}</div>
+      <div className={styles.date}>{`${year}년 ${month.length === 1 ? `0${month}` : month}월`}</div>
       <ul className={styles.calendarNavigation}>
         <li
           onClick={() => {

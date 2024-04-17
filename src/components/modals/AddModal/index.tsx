@@ -6,52 +6,35 @@ import { workoutListAtom } from "store";
 
 import { TITLE_LIST } from "constants/inputs";
 import styles from "./AddModal.module.scss";
-import { IEvent, TCategory } from "types";
+import { IEvent } from "types";
 import { useRef } from "react";
+import { ApiService } from "services/api-service";
 
-export function AddModal({
-  currentDate,
-  changeModalState,
-}: {
+interface IAddModalProps {
   currentDate: Date;
   changeModalState: (state: "addModal") => void;
-}) {
+}
+
+export function AddModal({ currentDate, changeModalState }: IAddModalProps) {
+  const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
   const selectBoxRef = useRef(null as null | HTMLSelectElement);
 
   const ref = useDetectClickOutside({
     onTriggered: (e: any) => {
       const targetClass = e.srcElement.classList.value;
 
-      console.log(targetClass);
       if (targetClass) {
         changeModalState("addModal");
       }
     },
   });
 
-  const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
   const filteredOptions = TITLE_LIST.filter((option) => {
     const isTrue = workoutList?.some((item: IEvent) => item.title === option);
     if (!isTrue) {
       return option;
     }
   });
-
-  function addWorkoutBox() {
-    if (selectBoxRef.current!.value) {
-      const data: IEvent[] = [
-        {
-          title: selectBoxRef.current!.value as TCategory,
-          start: currentDate,
-          end: currentDate,
-          resource: [],
-        },
-      ];
-      if (workoutList) {
-        setWorkoutList([...workoutList, ...data]);
-      }
-    }
-  }
 
   return (
     <div ref={ref} className={styles.container}>
@@ -67,7 +50,7 @@ export function AddModal({
       <div className="buttons">
         <button
           onClick={() => {
-            addWorkoutBox();
+            ApiService.createEvent(selectBoxRef, currentDate, workoutList, setWorkoutList);
           }}
         >
           <IoAddCircleOutline />

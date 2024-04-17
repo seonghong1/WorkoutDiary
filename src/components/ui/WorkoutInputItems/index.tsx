@@ -2,28 +2,21 @@ import { ChangeEvent } from "react";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 import styles from "./WorkoutInputItems.module.scss";
-import { IEventResource, TEventResource } from "types";
+import { IEventResource } from "types";
 import { CATEGORY_OPTIONS_DATA } from "constants/inputs";
+import { ApiService } from "services/api-service";
+import { useAtom } from "jotai";
+import { workoutListAtom } from "store";
 
-export interface IAppProps {}
-
-function WorkoutInputItems({
-  data,
-  eventIndex,
-  resourceIndex,
-  changeInputValue,
-  removeWorkoutInputItems,
-}: {
+export interface IWorkoutInputItemsProps {
   data: IEventResource;
   eventIndex: number;
   resourceIndex: number;
-  changeInputValue: (
-    eventIndex: number,
-    resourceIndex: number,
-    data: { key: TEventResource; value: string | number }
-  ) => void;
-  removeWorkoutInputItems: (eventIndex: number, resourceIndex: number) => void;
-}) {
+}
+
+function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputItemsProps) {
+  const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
+
   return (
     <div className={styles.container}>
       <select
@@ -32,7 +25,10 @@ function WorkoutInputItems({
         name=""
         id=""
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-          changeInputValue(eventIndex, resourceIndex, { key: "category", value: e.target.value })
+          ApiService.updateInputValue(workoutList, setWorkoutList, eventIndex, resourceIndex, {
+            key: "category",
+            value: e.target.value,
+          })
         }
       >
         {CATEGORY_OPTIONS_DATA[data.title].map((option: string) => {
@@ -50,7 +46,10 @@ function WorkoutInputItems({
             className={styles.weight}
             value={data.weight}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              changeInputValue(eventIndex, resourceIndex, { key: "weight", value: e.target.value })
+              ApiService.updateInputValue(workoutList, setWorkoutList, eventIndex, resourceIndex, {
+                key: "weight",
+                value: e.target.value,
+              })
             }
           />
           <span>kg</span>
@@ -61,7 +60,7 @@ function WorkoutInputItems({
             className={styles.repetition}
             value={data.repetition}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              changeInputValue(eventIndex, resourceIndex, {
+              ApiService.updateInputValue(workoutList, setWorkoutList, eventIndex, resourceIndex, {
                 key: "repetition",
                 value: e.target.value,
               })
@@ -75,7 +74,10 @@ function WorkoutInputItems({
             className={styles.sets}
             value={data.sets}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              changeInputValue(eventIndex, resourceIndex, { key: "sets", value: e.target.value })
+              ApiService.updateInputValue(workoutList, setWorkoutList, eventIndex, resourceIndex, {
+                key: "sets",
+                value: e.target.value,
+              })
             }
           />
           <span>sets</span>
@@ -83,7 +85,7 @@ function WorkoutInputItems({
         <button
           className={styles.removeButton}
           onClick={() => {
-            removeWorkoutInputItems(eventIndex, resourceIndex);
+            ApiService.deleteInputItems(workoutList, setWorkoutList, eventIndex, resourceIndex);
           }}
         >
           <IoIosRemoveCircleOutline />

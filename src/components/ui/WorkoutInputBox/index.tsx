@@ -1,31 +1,21 @@
 import { UtilService } from "services/util-service";
 import WorkoutInputItems from "../WorkoutInputItems";
 import styles from "./WorkoutInputBox.module.scss";
-import { IEvent, IEventResource, TEventResource } from "types";
+import { IEvent, IEventResource } from "types";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { ApiService } from "services/api-service";
+import { useAtom } from "jotai";
+import { workoutListAtom } from "store";
 
-export interface IAppProps {}
-
-function WorkoutInputBox({
-  data,
-  eventIndex,
-  changeInputValue,
-  removeWorkoutBox,
-  removeWorkoutInputItems,
-  addWorkoutInputItems,
-}: {
+export interface IWorkoutInputBoxProps {
   data: IEvent;
   eventIndex: number;
-  changeInputValue: (
-    eventIndex: number,
-    resourceIndex: number,
-    data: { key: TEventResource; value: string | number }
-  ) => void;
-  removeWorkoutBox: (eventIndex: number) => void;
-  removeWorkoutInputItems: (eventIndex: number, resourceIndex: number) => void;
-  addWorkoutInputItems: (eventIndex: number) => void;
-}) {
+}
+
+function WorkoutInputBox({ data, eventIndex }: IWorkoutInputBoxProps) {
+  const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
+
   return (
     <div
       className={styles.container}
@@ -41,7 +31,7 @@ function WorkoutInputBox({
         <button
           className={styles.removeButton}
           onClick={() => {
-            removeWorkoutBox(eventIndex);
+            ApiService.deleteEvent(workoutList, setWorkoutList, eventIndex);
           }}
         >
           <IoIosCloseCircleOutline />
@@ -54,15 +44,13 @@ function WorkoutInputBox({
             data={item}
             eventIndex={eventIndex}
             resourceIndex={i}
-            changeInputValue={changeInputValue}
-            removeWorkoutInputItems={removeWorkoutInputItems}
           />
         );
       })}
       <button
         className={styles.addButton}
         onClick={() => {
-          addWorkoutInputItems(eventIndex);
+          ApiService.createInputItems(workoutList, setWorkoutList, eventIndex);
         }}
       >
         <IoIosAddCircleOutline />

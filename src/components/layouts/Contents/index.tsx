@@ -1,4 +1,4 @@
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom } from "jotai";
 import { workoutListAtom } from "store";
 import styles from "./Contents.module.scss";
 import { CalendarComponent, WorkoutForm } from "components/ui";

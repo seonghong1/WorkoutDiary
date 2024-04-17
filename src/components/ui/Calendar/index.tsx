@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Calendar, NavigateAction, View, momentLocalizer } from "react-big-calendar";
+import { useEffect } from "react";
+import { Calendar, NavigateAction, SlotInfo, View, momentLocalizer } from "react-big-calendar";
 import { useAtom } from "jotai";
 import moment from "moment";
 
@@ -12,38 +12,26 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Toolbar from "../Toolbar";
 
 import { IEvent } from "types";
+import { ApiService } from "services/api-service";
 
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
-function CalendarComponent({
-  currentDate,
-  setCurrentDate,
-}: {
+
+interface ICalendarComponentProps {
   currentDate: null | Date;
   setCurrentDate: (currentDate: Date) => void;
-}) {
+}
+
+function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentProps) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
   const [eventList, setEventList] = useAtom(eventListAtom);
 
   useEffect(() => {
-    const date = new Date();
-    setCurrentDate(date);
-
-    const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
-    if (localstorage) {
-      setEventList(localstorage[`${date!.getFullYear()}_${date!.getMonth() + 1}`]);
-    }
+    ApiService.getEvents(setCurrentDate, setEventList);
   }, []);
 
   useEffect(() => {
-    if (currentDate && workoutList) {
-      const key = `${currentDate!.getFullYear()}_${currentDate!.getMonth() + 1}`;
-      const data = { [key]: eventList };
-
-      const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
-
-      localStorage.setItem("WorkoutDiary", JSON.stringify({ ...localstorage, ...data }));
-    }
+    ApiService.updateEvents(currentDate!, workoutList, eventList);
   }, [eventList]);
 
   /* 이벤트를 클릭했을 때  */
@@ -53,23 +41,8 @@ function CalendarComponent({
 
   /* 날짜 이동, 월 이동시 호출되는 항목 */
   function onNavigate(newDate: Date, view: View, action: NavigateAction) {
-    setCurrentDate(newDate);
-
-    const filterdData = eventList?.filter((event: IEvent) => {
-      if (event) {
-        if (new Date(event.start!)?.toDateString() === newDate.toDateString()) {
-          return event;
-        }
-      }
-    });
-
-    if (action !== "DATE") {
-      if (eventList) {
-        const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
-        setEventList(localstorage[`${currentDate!.getFullYear()}_${currentDate!.getMonth() + 1}`]);
-      }
-    } else {
-      setWorkoutList(filterdData || []);
+    if (action === "DATE") {
+      ApiService.getTodaysEvents(eventList, setCurrentDate, setWorkoutList, newDate);
     }
   }
 
@@ -84,6 +57,10 @@ function CalendarComponent({
     };
   }
 
+  function onSelectSlot(slotInfo: SlotInfo) {
+    ApiService.getTodaysEvents(eventList, setCurrentDate, setWorkoutList, slotInfo.start);
+  }
+
   return (
     <div className={`${styles.container} ${workoutList ? styles.fold : styles.expand}`}>
       <Calendar
@@ -94,6 +71,7 @@ function CalendarComponent({
         startAccessor="start"
         endAccessor="end"
         onNavigate={onNavigate}
+        onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
         eventPropGetter={eventPropGetter}
         components={{ toolbar: Toolbar }}

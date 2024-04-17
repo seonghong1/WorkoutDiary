@@ -1,10 +1,12 @@
+TODO :: crud 코드 최적화 및 개선점 파악
+TODO :: 타입 재정의 필요 (일부 작업하면서 임시로 타입을 any 변경)
+
 4/17 - TOTO :: CRUD및 일부 아이콘 추가 필요(react-icons)
 4/17 - TODO :: scrollBar style 적용 필요
 4/17 - TODO :: 임시로 추가한 버튼들 스타일 적용 필요
-TODO :: 타입 재정의 필요 (일부 작업하면서 임시로 타입을 any 변경)
-TODO :: crud 코드 최적화 및 개선점 파악
-TODO :: 날짜 관련 변수 및 코드 재확인 필요(중복 및 재사용 가능한 코드 확인)
-TODO :: props 타입 interface로 변환
+4/17 - TODO :: 컴포넌트 내부 crud로직 분리 -> ApiService
+4/17 - TODO :: 날짜 관련 변수 및 코드 재확인 필요(중복 및 재사용 가능한 코드 확인)
+4/17 - TODO :: props 타입 interface로 변환
 
 4/16 - TODO :: inputBox 요소 추가, 삭제 구현 필요
 4/16 - TODO :: inputItems 요소 추가, 삭제 구현 필요

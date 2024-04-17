@@ -12,14 +12,6 @@ export class UtilService {
     return `${year}.${month + 1}.${day}`;
   }
 
-  static getConvertedDate(date: Date) {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return new Date(`${year}-${month}-${day}`);
-  }
-
   static getConvertedWorkoutFormDate(date: Date) {
     const _month = date.getMonth() + 1;
     const _date = date.getDate();
