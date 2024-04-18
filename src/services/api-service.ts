@@ -24,14 +24,15 @@ export class ApiService {
   /* 이벤트를 갖고오는 함수 */
   static getEvents(
     setCurrentDate: (currentDate: Date) => void,
-    setEventList: (eventList: IEvent[]) => void
+    setEventList: (eventList: IEvent[]) => void,
+    date?: Date
   ) {
-    const date = new Date();
-    setCurrentDate(date);
+    const dateValue = date || new Date();
+    setCurrentDate(dateValue);
 
     const localstorage = JSON.parse(localStorage.getItem("WorkoutDiary") || "{}");
     if (localstorage) {
-      setEventList(localstorage[`${date!.getFullYear()}_${date!.getMonth() + 1}`]);
+      setEventList(localstorage[`${dateValue!.getFullYear()}_${dateValue!.getMonth() + 1}`]);
     }
   }
 

@@ -24,7 +24,7 @@
     }
 
     span {
-      @include font-gray-regular;
+      color: $color-gray;
       position: absolute;
       top: 50%;
       right: 10px;
@@ -34,7 +34,7 @@
 
   .removeButton {
     color: white;
-    font-size: 30px;
+    font-size: 2rem;
     padding: 0;
     > svg {
       display: block;

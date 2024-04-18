@@ -13,6 +13,7 @@ import Toolbar from "../Toolbar";
 
 import { IEvent } from "types";
 import { ApiService } from "services/api-service";
+import WorkoutStats from "../WorkoutStats";
 
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -43,6 +44,9 @@ function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentPr
   function onNavigate(newDate: Date, view: View, action: NavigateAction) {
     if (action === "DATE") {
       ApiService.getTodaysEvents(eventList, setCurrentDate, setWorkoutList, newDate);
+    } else {
+      ApiService.getEvents(setCurrentDate, setEventList, newDate);
+      setWorkoutList([]);
     }
   }
 
@@ -62,7 +66,8 @@ function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentPr
   }
 
   return (
-    <div className={`${styles.container} ${workoutList ? styles.fold : styles.expand}`}>
+    <div className={`${styles.container} ${currentDate ? styles.fold : styles.expand}`}>
+      {currentDate && <WorkoutStats eventList={eventList} />}
       <Calendar
         events={eventList}
         selectable={true}

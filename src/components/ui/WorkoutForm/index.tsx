@@ -14,15 +14,31 @@ import { IEvent } from "types";
 import { UtilService } from "services/util-service";
 import { useState } from "react";
 import { ApiService } from "services/api-service";
+import { useDetectClickOutside } from "react-detect-click-outside";
 
 interface IWorkoutFormProps {
   currentDate: Date;
+  setCurrentDate: (currentDate: Date | null) => void;
 }
 
-function WorkoutForm({ currentDate }: IWorkoutFormProps) {
+function WorkoutForm({ currentDate, setCurrentDate }: IWorkoutFormProps) {
   const [workoutList] = useAtom(workoutListAtom);
   const [eventList, setEventList] = useAtom(eventListAtom);
   const [modalState, setModalState] = useState({ addModal: false });
+
+  const ref = useDetectClickOutside({
+    onTriggered: (e: any) => {
+      const targetClass: string = e.srcElement.classList.value;
+      const availableClassList = ["Contents", "Header_title"];
+
+      for (let i = 0; availableClassList.length > i; i++) {
+        if (targetClass.includes(availableClassList[i])) {
+          setCurrentDate(null);
+          return;
+        }
+      }
+    },
+  });
 
   function changeModalState(state: "addModal") {
     const changedModalState = { [state]: !modalState[state] };
@@ -30,7 +46,7 @@ function WorkoutForm({ currentDate }: IWorkoutFormProps) {
   }
 
   return (
-    <div className={`${styles.container} ${workoutList ? styles.expand : styles.fold}`}>
+    <div ref={ref} className={`${styles.container} ${workoutList ? styles.expand : styles.fold}`}>
       <div className={styles.headerContent}>
         <IoToday className={styles.dateIcon} />
         <span className={styles.date}>{UtilService.getConvertedWorkoutFormDate(currentDate)}</span>

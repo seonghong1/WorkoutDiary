@@ -1,5 +1,3 @@
-import { ISavedEvent } from "types";
-
 export const THEME_COLOR = {
   등: "#3d61e1",
   가슴: "#f1424c",
