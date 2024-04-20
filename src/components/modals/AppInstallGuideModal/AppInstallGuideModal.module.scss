@@ -1,0 +1,114 @@
+@import "styles/valiable.scss";
+@import "styles/mixin.scss";
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba($color: $color-white, $alpha: 0.95);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  .leftContent {
+    display: flex;
+    gap: 10px;
+  }
+  .close {
+    > svg {
+      color: $color-gray;
+      font-size: 3rem;
+    }
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      font-family: initial;
+      font-weight: bold;
+      font-size: 1.5rem;
+
+      span {
+        color: $color-gray;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .add {
+    border: 2px solid $color-main;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: bold;
+    background-color: $color-white;
+    color: $color-main;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    > svg {
+      font-size: 2rem;
+    }
+  }
+
+  .guidContent {
+    position: absolute;
+    left: 20px;
+    bottom: -10px;
+    transform: translateY(100%);
+    width: 90%;
+    border-radius: 5px;
+    background-color: $color-white;
+    z-index: 1;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    font-family: initial;
+    box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
+    -webkit-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
+    -moz-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
+
+    > svg {
+      border-radius: 50%;
+      padding: 3px;
+      background-color: $color-main;
+      color: white;
+      font-size: 3rem;
+    }
+    .title {
+      color: $color-light-black;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    p {
+      color: $color-gray;
+      font-size: 1.2rem;
+      line-height: 18px;
+      text-align: center;
+      > svg {
+        font-size: 1.5rem;
+      }
+    }
+
+    button {
+      font-weight: bold;
+      border-radius: 10px;
+      background-color: $color-main;
+      color: white;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+}

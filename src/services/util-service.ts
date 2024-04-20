@@ -49,4 +49,14 @@ export class UtilService {
       setWindowSize("mobile");
     }
   }
+
+  static getUserDeviceType() {
+    const ua = navigator.userAgent;
+
+    if (/Android|webOS|iPhone|iPad/i.test(ua)) {
+      return "mobile";
+    } else {
+      return "desktop";
+    }
+  }
 }
