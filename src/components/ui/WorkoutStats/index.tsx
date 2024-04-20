@@ -3,12 +3,14 @@ import styles from "./WorkoutStats.module.scss";
 import { UtilService } from "services/util-service";
 export interface IWorkoutStatsProps {
   eventList: IEvent[];
+  // currentDate: Date | null;
 }
 
 function WorkoutStats({ eventList }: IWorkoutStatsProps) {
   const partList: TCategory[] = ["등", "가슴", "하체", "어깨", "이두", "삼두"];
   return (
     <div className={styles.container}>
+      {/* <div className="">{`${currentDate?.getMonth()}월`}</div> */}
       <ul>
         {partList.map((item: TCategory) => {
           return (

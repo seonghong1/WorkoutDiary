@@ -1,0 +1,61 @@
+@import "./valiable.scss";
+@import "./mixin.scss";
+
+.rbc-calendar {
+  padding: 10px;
+  background-color: $color-white;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  .rbc-day-bg,
+  .rbc-month-row {
+    cursor: pointer;
+  }
+
+  .rbc-date-cell {
+    transform: translate(-3px, 3px);
+    margin-bottom: 5px;
+  }
+  .rbc-current {
+    > button {
+      padding: 3px;
+      background-color: $color-main;
+      color: $color-white;
+      border-radius: 50%;
+    }
+  }
+  .rbc-row-content {
+    @include scrollbarStyle(3px);
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .rbc-row {
+    height: 21px !important;
+  }
+  .rbc-event {
+    width: auto !important;
+    display: inline-block !important;
+    border-radius: 8px !important;
+    transform: translateX(2.5%);
+    padding: 0 10px !important;
+    line-height: 20px !important;
+  }
+
+  .rbc-row-segment {
+    padding: 0 1px 1px 3px;
+  }
+
+  .rbc-today {
+    background-color: transparent !important;
+    border: 1px solid $color-main !important;
+    box-sizing: border-box;
+  }
+
+  .rbc-header {
+    background-color: rgba($color: $color-main, $alpha: 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

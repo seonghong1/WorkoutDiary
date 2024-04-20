@@ -11,5 +11,6 @@
 @include mobile {
   .container {
     flex-direction: column;
+    justify-content: flex-end;
   }
 }

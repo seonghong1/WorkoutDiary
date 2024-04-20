@@ -1,3 +1,3 @@
-import { workoutListAtom, eventListAtom } from "./workout-store";
+import { workoutListAtom, eventListAtom, windowSizeAtom } from "./workout-diary";
 
-export { workoutListAtom, eventListAtom };
+export { workoutListAtom, eventListAtom, windowSizeAtom };

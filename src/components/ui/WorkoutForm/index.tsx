@@ -29,8 +29,7 @@ function WorkoutForm({ currentDate, setCurrentDate }: IWorkoutFormProps) {
   const ref = useDetectClickOutside({
     onTriggered: (e: any) => {
       const targetClass: string = e.srcElement.classList.value;
-      const availableClassList = ["Contents", "Header_title"];
-
+      const availableClassList = ["Contents", "Header_title", "Header_container"];
       for (let i = 0; availableClassList.length > i; i++) {
         if (targetClass.includes(availableClassList[i])) {
           setCurrentDate(null);

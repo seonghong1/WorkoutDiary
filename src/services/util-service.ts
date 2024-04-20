@@ -13,9 +13,9 @@ export class UtilService {
   }
 
   static getConvertedWorkoutFormDate(date: Date) {
-    const _month = date.getMonth() + 1;
-    const _date = date.getDate();
-    const _day = date.getDay();
+    const _month = date?.getMonth() + 1;
+    const _date = date?.getDate();
+    const _day = date?.getDay();
     const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
     return `${_month}월${_date}일(${dayArray[_day]})`;
@@ -35,6 +35,18 @@ export class UtilService {
         return THEME_COLOR[title];
       case "삼두":
         return THEME_COLOR[title];
+    }
+  }
+
+  static getWindowSize(setWindowSize: (windowSize: "laptop" | "tablet" | "mobile") => void) {
+    const width = window.innerWidth;
+
+    if (width >= 1024) {
+      setWindowSize("laptop");
+    } else if (width < 1024 && width >= 720) {
+      setWindowSize("tablet");
+    } else {
+      setWindowSize("mobile");
     }
   }
 }

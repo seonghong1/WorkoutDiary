@@ -8,12 +8,14 @@ import { UtilService } from "services/util-service";
 
 import styles from "./Calendar.module.scss";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "styles/calendar.scss";
 
 import Toolbar from "../Toolbar";
 
 import { IEvent } from "types";
 import { ApiService } from "services/api-service";
 import WorkoutStats from "../WorkoutStats";
+import { windowSizeAtom } from "store/workout-diary";
 
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -26,6 +28,7 @@ interface ICalendarComponentProps {
 function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentProps) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
   const [eventList, setEventList] = useAtom(eventListAtom);
+  const [windowSize] = useAtom(windowSizeAtom);
 
   useEffect(() => {
     ApiService.getEvents(setCurrentDate, setEventList);
@@ -67,7 +70,10 @@ function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentPr
 
   return (
     <div className={`${styles.container} ${currentDate ? styles.fold : styles.expand}`}>
-      {currentDate && <WorkoutStats eventList={eventList} />}
+      {((windowSize === "mobile" && !currentDate) || (windowSize !== "mobile" && currentDate)) && (
+        <WorkoutStats eventList={eventList} />
+      )}
+
       <Calendar
         events={eventList}
         selectable={true}
@@ -80,6 +86,7 @@ function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentPr
         onSelectEvent={onSelectEvent}
         eventPropGetter={eventPropGetter}
         components={{ toolbar: Toolbar }}
+        // messages={{ showMore: () => "test" }}
       />
     </div>
   );

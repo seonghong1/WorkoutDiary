@@ -3,7 +3,7 @@
 
 .container {
   display: flex;
-  gap: 10px;
+  gap: 0.5rem;
   margin-bottom: 10px;
 
   select.category {
@@ -13,7 +13,7 @@
   .subContainer {
     width: 60%;
     display: flex;
-    gap: 10px;
+    gap: 0.5rem;
     .inputContainer {
       width: calc(100% / 3);
       position: relative;
@@ -27,7 +27,7 @@
       color: $color-gray;
       position: absolute;
       top: 50%;
-      right: 10px;
+      right: 0.5rem;
       transform: translateY(-50%);
     }
   }
@@ -62,4 +62,5 @@ input {
   border-radius: 10px;
   padding: 10px 8px;
   box-sizing: border-box;
+  font-size: 1rem;
 }

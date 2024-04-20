@@ -29,21 +29,11 @@
   }
 
   .boxContainer {
-    padding: 10px 10px 0 10px;
-    height: calc(100% - 130px);
-    overflow-y: AUTO;
-    &::-webkit-scrollbar {
-      width: 7px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: $color-light-gray;
-      border-radius: 10px;
-    }
+    @include scrollbarStyle;
 
-    &::-webkit-scrollbar-track {
-      border-radius: 10px;
-      background-color: rgba($color: $color-light-gray, $alpha: 0.3);
-    }
+    padding: 10px 10px 0 10px;
+    overflow-y: auto;
+    height: calc(100% - 130px);
   }
   button {
     &.addButton {
@@ -84,5 +74,17 @@
       width: 0%;
       height: 0%;
     }
+  }
+}
+
+@include laptop {
+  .boxContainer {
+    height: calc(100% - 140px) !important;
+  }
+}
+
+@include mobile {
+  .boxContainer {
+    height: calc(100% - 115px) !important;
   }
 }

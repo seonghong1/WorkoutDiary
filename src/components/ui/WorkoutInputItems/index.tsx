@@ -6,7 +6,7 @@ import { IEventResource } from "types";
 import { CATEGORY_OPTIONS_DATA } from "constants/inputs";
 import { ApiService } from "services/api-service";
 import { useAtom } from "jotai";
-import { workoutListAtom } from "store";
+import { workoutListAtom, windowSizeAtom } from "store";
 
 export interface IWorkoutInputItemsProps {
   data: IEventResource;
@@ -16,6 +16,7 @@ export interface IWorkoutInputItemsProps {
 
 function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputItemsProps) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
+  const [windowSize, setWindowSize] = useAtom(windowSizeAtom);
 
   return (
     <div className={styles.container}>
@@ -52,7 +53,7 @@ function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputIte
               })
             }
           />
-          <span>kg</span>
+          {windowSize !== "tablet" && <span>kg</span>}
         </div>
         <div className={styles.inputContainer}>
           <input
@@ -66,7 +67,7 @@ function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputIte
               })
             }
           />
-          <span>reps</span>
+          {windowSize !== "tablet" && <span>reps</span>}
         </div>
         <div className={styles.inputContainer}>
           <input
@@ -80,7 +81,7 @@ function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputIte
               })
             }
           />
-          <span>sets</span>
+          {windowSize !== "tablet" && <span>sets</span>}
         </div>
         <button
           className={styles.removeButton}
