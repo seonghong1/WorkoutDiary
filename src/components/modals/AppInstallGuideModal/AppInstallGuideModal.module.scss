@@ -7,15 +7,15 @@
   left: 0;
   width: 100%;
   background-color: rgba($color: $color-white, $alpha: 0.95);
-  padding: 10px;
+  padding: 10px 5px 10px 2px;
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
   .leftContent {
     display: flex;
-    gap: 10px;
   }
   .close {
+    padding: 0;
     > svg {
       color: $color-gray;
       font-size: 3rem;
@@ -26,14 +26,14 @@
     align-items: center;
     gap: 6px;
     img {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
     }
 
     p {
-      font-family: initial;
+      font-family: initial !important;
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
 
       span {
         color: $color-gray;
@@ -46,11 +46,11 @@
     border: 2px solid $color-main;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
     font-weight: bold;
     background-color: $color-white;
     color: $color-main;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     border-radius: 10px;
     > svg {
       font-size: 2rem;
@@ -74,7 +74,7 @@
     align-items: center;
     gap: 10px;
     z-index: 10;
-    font-family: initial;
+    font-family: initial !important;
     box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
     -webkit-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
