@@ -31,7 +31,8 @@
     }
 
     p {
-      font-family: initial !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+        sans-serif !important;
       font-weight: bold;
       font-size: 1.3rem;
 
@@ -74,7 +75,8 @@
     align-items: center;
     gap: 10px;
     z-index: 10;
-    font-family: initial !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+      sans-serif !important;
     box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
     -webkit-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
     -moz-box-shadow: 6px 7px 11px 1px rgba(0, 0, 0, 0.34);
