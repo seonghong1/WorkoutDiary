@@ -12,9 +12,22 @@
   border-radius: 20px;
   z-index: 1;
 
-  select {
-    outline: none;
-    padding: 10px 15px;
+  .selectContainer {
+    position: relative;
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      padding: 10px 15px !important;
+    }
+
+    .arrowIcon {
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   button {

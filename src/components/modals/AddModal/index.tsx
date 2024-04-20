@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { FaChevronDown } from "react-icons/fa";
 
 import { workoutListAtom } from "store";
 
@@ -38,15 +39,18 @@ export function AddModal({ currentDate, changeModalState }: IAddModalProps) {
 
   return (
     <div ref={ref} className={styles.container}>
-      <select ref={selectBoxRef} name="" id="">
-        {filteredOptions.map((data) => {
-          return (
-            <option key={data} value={data}>
-              {data}
-            </option>
-          );
-        })}
-      </select>
+      <div className={styles.selectContainer}>
+        <select ref={selectBoxRef} name="" id="">
+          {filteredOptions.map((data) => {
+            return (
+              <option key={data} value={data}>
+                {data}
+              </option>
+            );
+          })}
+        </select>
+        <FaChevronDown className={styles.arrowIcon} />
+      </div>
       <div className="buttons">
         <button
           onClick={() => {

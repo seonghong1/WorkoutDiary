@@ -59,3 +59,12 @@
     align-items: center;
   }
 }
+
+@include mobile {
+  .rbc-header {
+    font-size: 1.3rem;
+  }
+  .rbc-event-content {
+    font-size: 1.3rem;
+  }
+}
