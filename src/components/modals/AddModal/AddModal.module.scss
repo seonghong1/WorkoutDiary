@@ -1,9 +1,10 @@
 @import "styles/valiable.scss";
+@import "styles/mixin.scss";
 
 .container {
   position: absolute;
   background-color: $color-main;
-  right: 5px;
+  right: 10px;
   top: 50px;
   display: flex;
   align-items: center;
@@ -19,7 +20,7 @@
       -moz-appearance: none;
       appearance: none;
 
-      padding: 10px 15px !important;
+      padding: 10px 25px 10px 15px !important;
     }
 
     .arrowIcon {
@@ -43,5 +44,11 @@
     > * {
       display: block;
     }
+  }
+}
+
+@include mobile {
+  .container {
+    top: 35px;
   }
 }
