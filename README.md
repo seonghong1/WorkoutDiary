@@ -48,9 +48,12 @@
 
 - react hook
 - library
-- util, api service
+
 - store
+- util, api service
+
 - component
 - style
+
 - type
 - constants

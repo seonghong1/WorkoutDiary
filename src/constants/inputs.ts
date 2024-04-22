@@ -1,3 +1,5 @@
+import { TCategory } from "types";
+
 export const THEME_COLOR = {
   등: "#3d61e1",
   가슴: "#f1424c",
@@ -7,7 +9,7 @@ export const THEME_COLOR = {
   삼두: "#bb5b5b",
 };
 
-export const TITLE_LIST = ["등", "가슴", "하체", "어깨", "이두", "삼두"];
+export const TITLE_LIST: TCategory[] = ["등", "가슴", "하체", "어깨", "이두", "삼두"];
 
 /* category select-box에 사용되는 options 요소 */
 export const CATEGORY_OPTIONS_DATA: { [key: string]: string[] } = {

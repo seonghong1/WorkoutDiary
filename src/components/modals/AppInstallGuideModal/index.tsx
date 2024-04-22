@@ -1,15 +1,17 @@
-import styles from "./AppInstallGuideModal.module.scss";
-import logo from "assets/images/logo192.png";
+import { useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { MdIosShare } from "react-icons/md";
 import { GrInstallOption } from "react-icons/gr";
-import { useState } from "react";
+
+import styles from "./AppInstallGuideModal.module.scss";
+
+import logo from "assets/images/logo192.png";
 
 interface IAppInstallGuideModalProps {
   setAppInstallGuideModalState: (appInstallGuideModalState: boolean) => void;
 }
 
-export function AppInstallGuideModal({ setAppInstallGuideModalState }: IAppInstallGuideModalProps) {
+function AppInstallGuideModal({ setAppInstallGuideModalState }: IAppInstallGuideModalProps) {
   const [guidContentState, setGuidContentState] = useState(false);
   return (
     <div className={styles.container}>
@@ -63,3 +65,5 @@ export function AppInstallGuideModal({ setAppInstallGuideModalState }: IAppInsta
     </div>
   );
 }
+
+export default AppInstallGuideModal;

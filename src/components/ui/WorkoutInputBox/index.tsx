@@ -1,12 +1,15 @@
-import { UtilService } from "services/util-service";
-import WorkoutInputItems from "../WorkoutInputItems";
-import styles from "./WorkoutInputBox.module.scss";
-import { IEvent, IEventResource } from "types";
+import { useAtom } from "jotai";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+
+import { UtilService } from "services/util-service";
 import { ApiService } from "services/api-service";
-import { useAtom } from "jotai";
 import { workoutListAtom } from "store";
+
+import WorkoutInputItems from "../WorkoutInputItems";
+import styles from "./WorkoutInputBox.module.scss";
+
+import { IEvent, IEventResource } from "types";
 
 export interface IWorkoutInputBoxProps {
   data: IEvent;

@@ -1,20 +1,18 @@
+import { useState } from "react";
+import { useAtom } from "jotai";
+import { useDetectClickOutside } from "react-detect-click-outside";
 import { IoAddCircle, IoToday } from "react-icons/io5";
 import { HiMiniMinusCircle } from "react-icons/hi2";
 
-import { useAtom } from "jotai";
-
+import { UtilService } from "services/util-service";
+import { ApiService } from "services/api-service";
 import { eventListAtom, workoutListAtom } from "store";
 
 import WorkoutInputBox from "../WorkoutInputBox";
 import { AddModal } from "components/modals";
-
 import styles from "./WorkoutForm.module.scss";
 
 import { IEvent } from "types";
-import { UtilService } from "services/util-service";
-import { useState } from "react";
-import { ApiService } from "services/api-service";
-import { useDetectClickOutside } from "react-detect-click-outside";
 
 interface IWorkoutFormProps {
   currentDate: Date;

@@ -1,5 +1,6 @@
-import styles from "./Toolbar.module.scss";
 import { ToolbarProps } from "react-big-calendar";
+
+import styles from "./Toolbar.module.scss";
 
 function Toolbar(props: ToolbarProps) {
   const year = props.date.getFullYear();

@@ -1,12 +1,14 @@
 import { ChangeEvent } from "react";
+import { useAtom } from "jotai";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 
+import { ApiService } from "services/api-service";
+import { workoutListAtom, windowSizeAtom } from "store";
+
 import styles from "./WorkoutInputItems.module.scss";
+
 import { IEventResource } from "types";
 import { CATEGORY_OPTIONS_DATA } from "constants/inputs";
-import { ApiService } from "services/api-service";
-import { useAtom } from "jotai";
-import { workoutListAtom, windowSizeAtom } from "store";
 
 export interface IWorkoutInputItemsProps {
   data: IEventResource;
@@ -16,7 +18,7 @@ export interface IWorkoutInputItemsProps {
 
 function WorkoutInputItems({ data, eventIndex, resourceIndex }: IWorkoutInputItemsProps) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
-  const [windowSize, setWindowSize] = useAtom(windowSizeAtom);
+  const [windowSize] = useAtom(windowSizeAtom);
 
   return (
     <div className={styles.container}>

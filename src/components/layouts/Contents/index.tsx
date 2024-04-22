@@ -1,8 +1,9 @@
-import styles from "./Contents.module.scss";
-import { CalendarComponent, WorkoutForm } from "components/ui";
 import { useState } from "react";
 
-export function ContentComponent() {
+import { CalendarComponent, WorkoutForm } from "components/ui";
+import styles from "./Contents.module.scss";
+
+function ContentComponent() {
   const [_currentDate, _setCurrentDate] = useState(null as null | Date);
 
   function setCurrentDate(currentDate: Date | null) {
@@ -16,3 +17,5 @@ export function ContentComponent() {
     </div>
   );
 }
+
+export default ContentComponent;

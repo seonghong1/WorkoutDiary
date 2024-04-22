@@ -1,21 +1,20 @@
 import { useEffect } from "react";
-import { Calendar, NavigateAction, SlotInfo, View, momentLocalizer } from "react-big-calendar";
 import { useAtom } from "jotai";
 import moment from "moment";
+import { Calendar, NavigateAction, SlotInfo, View, momentLocalizer } from "react-big-calendar";
 
 import { eventListAtom, workoutListAtom } from "store";
+import { windowSizeAtom } from "store/workout-diary";
+import { ApiService } from "services/api-service";
 import { UtilService } from "services/util-service";
 
+import Toolbar from "../Toolbar";
+import WorkoutStats from "../WorkoutStats";
 import styles from "./Calendar.module.scss";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "styles/calendar.scss";
 
-import Toolbar from "../Toolbar";
-
 import { IEvent } from "types";
-import { ApiService } from "services/api-service";
-import WorkoutStats from "../WorkoutStats";
-import { windowSizeAtom } from "store/workout-diary";
 
 moment.locale("ko-KR");
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -86,7 +85,6 @@ function CalendarComponent({ currentDate, setCurrentDate }: ICalendarComponentPr
         onSelectEvent={onSelectEvent}
         eventPropGetter={eventPropGetter}
         components={{ toolbar: Toolbar }}
-        // messages={{ showMore: () => "test" }}
       />
     </div>
   );
