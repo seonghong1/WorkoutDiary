@@ -7,16 +7,16 @@ import { ApiService } from "services/api-service";
 import { workoutListAtom } from "store";
 
 import WorkoutInputItems from "../WorkoutInputItems";
-import styles from "./WorkoutInputBox.module.scss";
+import styles from "./WorkoutEventItem.module.scss";
 
 import { IEvent, IEventResource } from "types";
 
-export interface IWorkoutInputBoxProps {
+export interface IWorkoutEventItemProps {
   data: IEvent;
   eventIndex: number;
 }
 
-function WorkoutInputBox({ data, eventIndex }: IWorkoutInputBoxProps) {
+function WorkoutEventItem({ data, eventIndex }: IWorkoutEventItemProps) {
   const [workoutList, setWorkoutList] = useAtom(workoutListAtom);
 
   return (
@@ -62,4 +62,4 @@ function WorkoutInputBox({ data, eventIndex }: IWorkoutInputBoxProps) {
   );
 }
 
-export default WorkoutInputBox;
+export default WorkoutEventItem;

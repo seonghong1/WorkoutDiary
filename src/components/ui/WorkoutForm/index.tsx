@@ -8,7 +8,7 @@ import { UtilService } from "services/util-service";
 import { ApiService } from "services/api-service";
 import { eventListAtom, workoutListAtom } from "store";
 
-import WorkoutInputBox from "../WorkoutInputBox";
+import WorkoutEventItem from "../WorkoutEventItem";
 import { AddModal } from "components/modals";
 import styles from "./WorkoutForm.module.scss";
 
@@ -61,7 +61,7 @@ function WorkoutForm({ currentDate, setCurrentDate }: IWorkoutFormProps) {
       </div>
       <div className={styles.boxContainer}>
         {workoutList?.map((item: IEvent, i: number) => {
-          return <WorkoutInputBox key={`${item.title}`} data={item} eventIndex={i} />;
+          return <WorkoutEventItem key={`${item.title}`} data={item} eventIndex={i} />;
         })}
       </div>
       <button
