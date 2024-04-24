@@ -6,10 +6,10 @@
 <br/>
 <br/>
 <br/>
-- Framework & Library : React
-- 상태관리 : Jotai
-- Calendar : react-big-calendar
-- Style : SCSS
+- Framework & Library : React<br/>
+- 상태관리 : Jotai<br/>
+- Calendar : react-big-calendar<br/>
+- Style : SCSS<br/>
 <br/>
 <br/>
 <br/>
