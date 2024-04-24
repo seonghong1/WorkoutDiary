@@ -2,18 +2,21 @@
 #### url : https://workout-diary-two.vercel.app
 
 - 일별 운동 경험을 기록하는 다이어리 프로젝트 입니다.
-
-
-
-Framework & Library : React
-상태관리 : Jotai
-Calendar : react-big-calendar
-Style : SCSS
-
-
-
-
-
+<br/>
+<br/>
+<br/>
+<br/>
+- Framework & Library : React
+- 상태관리 : Jotai
+- Calendar : react-big-calendar
+- Style : SCSS
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 - 4/20 - TODO :: 노트북, 테블릿, 모바일 3가지 브레이크 포인트 반응형 작업 - workout 영역 반응형 작업 필요
 - 4/20 - TODO :: 캘린더 내부 showMore버튼 랜더링 관련 테스트 및 확인 필요
 
